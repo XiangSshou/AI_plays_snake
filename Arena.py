@@ -40,7 +40,9 @@ class Arena:
         '''
         found = False
         size = self.block
-        while not found:
+        count = 0
+        while not found and count<5:
+            count += 1
             x = random.randint(2*size, self.width - 2*size)
             x = x - (x % size)
             y = random.randint(2*size, self.height - 2*size)

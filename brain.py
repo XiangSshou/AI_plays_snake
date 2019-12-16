@@ -135,7 +135,6 @@ class brain:
 
     # feed forward using neural network
     def decision_from_nn(self, x, y, snake, snake2, direction):
-        closer_to_food = True
         fx, fy = self.nextFood
         input = self.make_input(x, y, fx, fy, snake, snake2, direction)
         input = np.array(input)
@@ -164,6 +163,14 @@ class brain:
             if result!=2 and not(input[5]==1.0 or input[6]==1.0 or input[7]==1.0):
                 self.giveSecondChance += 1
                 return 2
+        return result
+
+    def decision_from_fool(self, x, y, snake, snake2, direction):
+        result = random.randint(1,3)
+        fx, fy = self.nextFood
+        input = self.make_input(x, y, fx, fy, snake, snake2, direction)
+        input = np.array(input)
+        result = self.secondChance(x, y, snake, snake2, direction, result, input)
         return result
 
     # set the next food variable

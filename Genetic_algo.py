@@ -5,6 +5,7 @@ import pickle
 from Arena import Arena
 import argparse
 from input import *
+import matplotlib.pyplot as plt
 import time
 
 
@@ -228,22 +229,29 @@ def main():
     ap.add_argument('-o', '--output', required=True, help='relative path to save the snakes')
     args = vars(ap.parse_args())
     snakes = [[snake.snake(width, height, brainLayer, block_length) for _ in range(population_size)],
-            [snake.snake(width, height, brainLayer, block_length, head_x=width-60, head_y=height-60) for _ in range(population_size)]]
+            [snake.snake(width, height, brainLayer, block_length, head_x=width-30, head_y=height-30) for _ in range(population_size)]]
     arena = Arena(width, height, block_length)
     top_snakes = []
+    top_5_score = []
     for i in range(no_of_generations):
         print('generation : ', i+1, ',', end='\n')
         run(snakes, arena)
         # sorting the population wrt length of snake and steps taken
         mergedSnakes = snakes[0]+snakes[1]
         mergedSnakes.sort(key=lambda x: (x.score), reverse=True)
-        print_top_5(mergedSnakes[0:5])
+        print_top_5(mergedSnakes[0:5]) 
+        sum_5 = 0
+        for s in mergedSnakes[0:5]:
+            sum_5 += s.score
+        top_5_score.append(sum_5/5.0)
         # generalising the whole population
         print('saving the snake')
         top_snakes.append(mergedSnakes[0])
         # saving top snakes list as pickle
         save_top_snakes(top_snakes, args['output'])
         snakes = create_new_population(mergedSnakes)
+    plt.plot(top_5_score)
+    plt.show()
 
 
 if __name__ == "__main__":

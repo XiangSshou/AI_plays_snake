@@ -4,7 +4,7 @@ from brain import *
 
 
 class snake:
-    def __init__(self, width, height, brainLayer, size, head_x=40, head_y=40, random_weights=True, random_bases=True, random_start=False):
+    def __init__(self, width, height, brainLayer, size, head_x=20, head_y=20, random_weights=True, random_bases=True, random_start=False):
         self.list = []
         self.width = width
         self.height = height
