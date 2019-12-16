@@ -1,48 +1,32 @@
-# AI plays snake game
-Neural Network Trained using Genetic Algorithm which acts as the brain for the snake.
-
-The snake looks in the 8 direction for food, body part and the boundary which acts as the 24 input for the Neural Network.
-
-<img src= "/samples/generation5.gif"> <img src= "/samples/generation23.gif">
-
-## Getting Started
-### Prerequisites
-To install the dependencies, run on terminal :
+# Training AI to Play Two-Player Snake Game
+## Dependencies
+The packages needed are listed in requirement.txt. The code was tested with Python 3.7.4
+To install the dependencies, you may run the following command:
 ```
 python3 -m pip install -r requirements.txt
 ```
-
-### Project Structure
-```
-├── Arena.py            # class that helps in setting the boundary and parameters of the arena
-├── brain.py            # class that deals with the neural network
-├── colors.py           # consists of colors used in the whole project
-├── game.py             # lets the saved snakes to run in 
-├── samples
-│   ├── generation23.gif    
-│   └── generation6.gif
-├── input.py            # parametes to apply genetic algorithm on your own
-├── README.md
-├── requirements.txt    # python dependencies required
-├── saved
-│   └── top_snakes.pickle   # saved list of objects of snake class for each generation
-└── snake.py            # class snake that handles all properties of snake
-```
+## Change Parameters
+To problem instance size or parameters of the learning algorithm, please check and change file: ```input.py```.
 ## Training
-To train the neural network using Genetic Algorithm, alter the parameters according to your needs inside the ```input.py```, then run the following command specifying the path to save the optimised result as a pickle file (a list is stored, containing the best snake from each generation):
+To train the neural network, run the following command and add the filename you want to store the data in after ```--output```:
 ```
-python3 Genetic_algo.py --output saved/test.pickle 
+python3 Genetic_algo.py --output filename 
 ```
 ## Playing
-To run or test the snakes saved previously, run the following commands specifying the path to the saved file :
+###Run Test
+To run test and see if AI can beat baseline opponent:
 ```
-python3 game.py --input saved/test.pickle
+python3 game.py --input filename -s generation -f -t
 ```
-### Skipping steps
-To skip steps, simply add the -s or --steps argument to the call
+###Play with AI
+To play with AI of a specific generation:
 ```
-python3 game.py --input saved/test.pickle --steps 50
+python3 game.py --input filename -s generation -v
+```
+###Watch AI Fighting
+To see what AI can do:
+```
+python3 game.py --input filename -s generation -t
 ```
 ## Acknowledgement
-- Inspired by the video of Code-Bullet. Link : https://www.youtube.com/watch?v=3bhP7zulFfY
-- Game Visual inspired by YuriyGuts. Link : https://github.com/YuriyGuts/snake-ai-reinforcement
+The frame of code is from aliakbar09a/AI_plays_snake. Link : https://github.com/aliakbar09a/AI_plays_snake

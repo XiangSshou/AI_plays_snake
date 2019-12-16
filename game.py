@@ -40,7 +40,6 @@ if __name__ == "__main__":
             text = 'Generation : '+('fool' if args['fool'] else str(generation))+' vs '+str(generation+1)
             pygame.display.set_caption(text)
             seed = random.random()
-            print('---- Snake[1]: Generation:', 'fool' if args['fool'] else generation,' vs  Snake[2]: Generation:', generation+1,'----')
             t_snake = snake(width, height, brainLayer, block_length,
                             random_weights=False, random_bases=False)
             t_snake.Brain.weights = snakes[start].Brain.weights
